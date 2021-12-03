@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <link rel="icon" type="image/x-icon" href="C:/Users/owner/Downloads/favicon.ico">
+        <link rel="shortcut icon" type="image/x-icon" href="C:/Users/owner/Downloads/favicon.ico">
+        <link rel="stylesheet" href="{% static 'blog/bootstrap/bootstrap.css' %}" media="screen">
+        <link rel="stylesheet" href="{% static 'blog/_assets/css/custom.min.css' %}">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+
+
+        <title>진실의 눈</title>
+
+
+
+
+        <style>
+            /*슬라이드*/
+            * {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+
+            #slider-wrap {
+                width: 50%;
+                height: 100%;
+                position: relative;
+                overflow: hidden;
+                display: block;
+                margin-left : 28%;
+
+            }
+
+            #slider-wrap img{
+                display: block; margin: 0px auto;
+
+            }
+
+            #slider-wrap ul#slider {
+                height: 400%;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+
+            #slider-wrap ul#slider li {
+                float: left;
+                position: relative;
+                width: 30%;
+                height: 30%;
+            }
+
+            #slider-wrap ul#slider li>div {
+                position: absolute;
+                top: 10%;
+                left: 15%;
+            }
+
+            #slider-wrap ul#slider li>div h3 {
+                font-size: 15%;
+                text-transform: uppercase;
+            }
+
+            #slider-wrap ul#slider li>div span {
+                font-size: 15%;
+            }
+
+            #slider-wrap ul#slider li img {
+                display: block;
+                width: 100%;
+                height: 80%;
+            }
+
+            /*버튼*/
+            .slider-btns {
+                position: absolute;
+                width: 50px;
+                height: 60px;
+                top: 50%;
+                margin-top: -25px;
+                line-height: 57px;
+                text-align: center;
+                cursor: pointer;
+                background: rgba(0, 0, 0, 0.1);
+                z-index: 100;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -khtml-user-select: none;
+                -ms-user-select: none;
+                -webkit-transition: all 0.1s ease;
+                -o-transition: all 0.1s ease;
+                transition: all 0.1s ease;
+            }
+
+            .slider-btns:hover {
+                background: rgba(0, 0, 0, 0.3);
+            }
+
+            #next {
+                right: -50px;
+                border-radius: 7px 0px 0px 7px;
+                color: #eee;
+            }
+
+            #previous {
+                left: -50px;
+                border-radius: 0px 7px 7px 7px;
+                color: #eee;
+            }
+
+            #slider-wrap.active #next {
+                right: 0px;
+            }
+
+            #slider-wrap.active #previous {
+                left: 0px;
+            }
+
+            /*슬라이드 바*/
+            #slider-pagination-wrap {
+                min-width: 20px;
+                margin-top: 350px;
+                margin-left: auto;
+                margin-right: auto;
+                height: 15px;
+                position: relative;
+                text-align: center;
+            }
+
+            #slider-pagination-wrap ul {
+                width: 100%;
+            }
+
+            #slider-pagination-wrap ul li {
+                margin: 0 4px;
+                display: inline-block;
+                width: 5px;
+                height: 5px;
+                border-radius: 50%;
+                background: #fff;
+                opacity: 0.5;
+                position: relative;
+                top: 0;
+            }
+
+            #slider-pagination-wrap ul li.active {
+                width: 12px;
+                height: 12px;
+                top: 3px;
+                opacity: 1;
+                -webkit-box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 0px;
+                box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 0px;
+            }
+
+
+            #slider-wrap ul,
+            #slider-pagination-wrap ul li {
+                -webkit-transition: all 0.3s cubic-bezier(1, .01, .32, 1);
+                -o-transition: all 0.3s cubic-bezier(1, .01, .32, 1);
+                transition: all 0.3s cubic-bezier(1, .01, .32, 1);
+            }
+
+
+
+            /* 푸터 */
+            #footer {
+                clear:both;
+                border-top: solid 1px #d6d7d6;
+                position:absolute;
+                bottom:0;
+                width:100%;
+                height:10%;
+                font-size:0px;
+                background:rgba(150,150,150,0.1);
+                color:rgba(150, 149, 149, 0.8);
+                line-height:140%;
+            }
+            #footer .tex {
+                margin-left:28%;
+                text-align:left;
+                float:bottom;
+            }
+        </style>
+    </head>
+    <body>
+
+        {% include 'basecamp/navbar.html' %}
+
+
+        <div class="container">
+            <!--for문 -->
+            <div class="row">
+                <!-- Blog Entries Column -->
+                <div class="col-md-8" id="main-div">
+                    <!-- 여기안에 들어옴 -->
+                    {% block content %}
+                    {% endblock %}
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <div id="slider-wrap">
+                <ul id="slider">
+
+                    <li>
+                        <a href = "/analysis"><img src="http://www.bizhankook.com/upload/bk/article/201801/thumb/14646-27853-sampleM.jpg"></a>
+                    </li>
+
+                    <li>
+                        <a href = "/whatdidwedo"><img src="https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202007/19/a7cba23c-077f-4aa1-bf35-56028e866c2e.jpg"></a>
+                    </li>
+                </ul>
+
+                <div class="slider-btns" id="next"><span>▶</span></div>
+                <div class="slider-btns" id="previous"><span>◀</span></div>
+
+                <div id="slider-pagination-wrap">
+                    <ul>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="footer">
+                <div class="tex">
+                    <p>
+                        <h5>
+                            AI를 이용한 사진 조작 탐지
+                        </h5>
+                    </p>
+                </div>
+                <div class="tex">
+                    <p>
+                        <h6>
+                            윤태영
+                        </h6>
+                    </p>
+                </div>
+                <div class="tex">
+                    <p>
+                        <h6>
+                            2021 홍익대학교 졸업프로젝트
+                        </h6>
+                    </p>
+                </div>
+
+            </div>
+
+        <script>
+
+
+
+            function search_post(){
+                var search_value = document.getElementById('search-input').value;
+                location.href = '/blog/search/'+ search_value + "/";
+            }
+
+            function wait_for_enter(){
+                if (window.event.keyCode == 13){ {# 13 =enter #}
+                    search_post()
+                }
+            }
+
+            //슬라이드
+                var slideWrapper = document.getElementById('slider-wrap');
+                //현재 슬라이드 인덱스
+                var slideIndex = 0;
+                //슬라이드 아이템
+                var slides = document.querySelectorAll('#slider-wrap ul li');
+                //슬라이드의 갯수
+                var totalSlides = slides.length;
+                //슬라이드 폭 받아오기
+                var sliderWidth = slideWrapper.clientWidth;
+                //아이템의 폭 설정
+                slides.forEach(function (element) {
+                    element.style.width = sliderWidth + 'px';
+                })
+                var slider = document.querySelector('#slider-wrap ul#slider');
+                slider.style.width = sliderWidth * totalSlides + 'px';
+
+                // 다음, 이전 버튼
+                var nextBtn = document.getElementById('next');
+                var prevBtn = document.getElementById('previous');
+                nextBtn.addEventListener('click', function () {
+                    plusSlides(1);
+                });
+                prevBtn.addEventListener('click', function () {
+                    plusSlides(-1);
+                });
+
+                slideWrapper.addEventListener('mouseover', function () {
+                    this.classList.add('active');
+                    clearInterval(autoSlider);
+                });
+                slideWrapper.addEventListener('mouseleave', function () {
+                    this.classList.remove('active');
+                    autoSlider = setInterval(function () {
+                        plusSlides(1);
+                    }, 3000);
+                });
+
+
+                function plusSlides(n) {
+                    showSlides(slideIndex += n);
+                }
+
+                function currentSlides(n) {
+                    showSlides(slideIndex = n);
+                }
+
+                function showSlides(n) {
+                    slideIndex = n;
+                    if (slideIndex == -1) {
+                        slideIndex = totalSlides - 1;
+                    } else if (slideIndex === totalSlides) {
+                        slideIndex = 0;
+                    }
+
+                    slider.style.left = -(sliderWidth * slideIndex) + 'px';
+                    pagination();
+                }
+
+
+                slides.forEach(function () {
+                    var li = document.createElement('li');
+                    document.querySelector('#slider-pagination-wrap ul').appendChild(li);
+                })
+
+                function pagination() {
+                    var dots = document.querySelectorAll('#slider-pagination-wrap ul li');
+                    dots.forEach(function (element) {
+                        element.classList.remove('active');
+                    });
+                    dots[slideIndex].classList.add('active');
+                }
+
+                pagination();
+                var autoSlider = setInterval(function () {
+                    plusSlides(1);
+                }, 3000);
+        </script>
+        <script src="{% static 'blog/_assets/js/jquery.min.js' %}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+                integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+                crossorigin="anonymous"></script>
+        <script src="{% static 'blog/bootstrap/bootstrap.min.js' %}"></script>
+        <script src="{% static 'blog/_assets/js/custom.js' %}"></script>
+    </body>
+</html>

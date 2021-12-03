@@ -1,0 +1,13 @@
+<!-- 템플릿 확장, 서로 다른 페이지에서 html의 일부를 재사용 가능 -->
+{% extends 'blog/base.html' %}
+
+{% block content %}
+        <button class="btn btn-primary btn-sm" onclick="location.href='/blog/upload/'">Upload</button>
+
+    <h1 id="blog-list-title">
+        {% if category %}<small class="text-muted">: {{ category }}</small>{% endif %}
+        {% if search_info %}<small class="text-muted">: {{ search_info }} ({{ object_list.count }})</small>{% endif %}
+    </h1>
+    <!-- Blog Post -->
+
+{% endblock %}

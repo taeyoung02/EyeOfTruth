@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+{% load static %}  {# bootstrap.css 가져옴 #}
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <!-- 이 html을 extend한 다른 html에 block title이 없으면 이것을 그대로 사용
+    만약 block title이 있다면 그것을 사용 -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <link rel="stylesheet" href="{% static 'blog/bootstrap/bootstrap.css' %}" media="screen">
+    <link rel="stylesheet" href="{% static 'blog/_assets/css/custom.min.css' %}">
+    <script src="https://kit.fontawesome.com/f284a7c950.js" crossorigin="anonymous"></script>
+
+    <style>
+        #footer {
+                clear:both;
+                border-top: solid 1px #d6d7d6;
+                position:absolute;
+                bottom:0;
+                width:100%;
+                height:10%;
+                font-size:0px;
+                background:rgba(150,150,150,0.1);
+                color:rgba(150, 149, 149, 0.8);
+                line-height:140%;
+            }
+            #footer .tex {
+                margin-left:28%;
+                text-align:left;
+                float:bottom;
+            }
+    </style>
+
+</head>
+<body>
+
+
+{% include 'basecamp/navbar.html' %}
+<div id="footer">
+    <div class="tex">
+        <p>
+            <h5>
+                AI를 이용한 사진 조작 탐지
+            </h5>
+        </p>
+    </div>
+    <div class="tex">
+        <p>
+            <h6>
+                윤태영
+            </h6>
+        </p>
+    </div>
+    <div class="tex">
+        <p>
+            <h6>
+                2021 홍익대학교 졸업프로젝트
+            </h6>
+        </p>
+    </div>
+</div>
+
+{% block content %}
+{% endblock %}
+
+
+
+
+<script src="{% static 'blog/_assets/js/jquery.min.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="{% static 'blog/bootstrap/bootstrap.min.js' %}"></script>
+<script src="{% static 'blog/_assets/js/custom.js' %}"></script>
+
+</body>
+</html>

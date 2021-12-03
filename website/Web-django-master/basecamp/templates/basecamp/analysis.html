@@ -1,0 +1,22 @@
+{% extends 'basecamp/base_full.html' %}
+{% load static %}
+{% block content %}
+
+    <body>
+        <div id="container">
+            <center>
+            {% if manipulated == 0 %}
+            <p style="margin-top:100px">
+                <h2><span style="color:green">{{msg}}</span></h2>
+            <p style="margin-top:150px">
+                <button class="btn btn-primary btn-sm" onclick="location.href='/blog/'">확인</button>
+            {% else %}
+            <p style="margin-top:100px">
+                <h2><span style="color:red">{{msg}}</span></h2>
+                <p><img src="../../media/result.jpg" alt="조작 부위 탐지 결과"/></p>
+            {% endif %}
+            </center>
+        </div>
+    </body>
+
+{% endblock %}

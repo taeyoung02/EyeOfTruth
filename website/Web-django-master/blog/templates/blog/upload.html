@@ -1,0 +1,12 @@
+<!-- base.html과 연결 -->
+{% extends 'blog/base.html' %}
+
+{% block title %}{{ object.title }} - Blog{% endblock %}
+
+{% block content %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary float-left">Submit</button>
+    </form>
+{% endblock %}
